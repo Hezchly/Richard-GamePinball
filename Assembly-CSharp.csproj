@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{BB05E0C7-5321-6011-46F5-F08DDB27510C}</ProjectGuid>
+    <ProjectGuid>{C283B6F2-6AF6-25F8-7598-E078E5AA59B5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -58,6 +58,9 @@
   <ItemGroup>
     <Compile Include="Assets\Script\Paddle.cs" />
     <Compile Include="Assets\Script\Bumper.cs" />
+    <Compile Include="Assets\Script\SwitchController.cs" />
+    <Compile Include="Assets\Script\BallController.cs" />
+    <Compile Include="Assets\Script\LauncherController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
