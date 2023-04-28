@@ -8,6 +8,8 @@ public class Bumper : MonoBehaviour
     public Collider bola;
     public float multiplier;
     public Color color;
+    public AudioManager audioManager;
+    public VFXManager VFXManager;
 
     private Renderer renderer;
     private Animator animator;
@@ -28,6 +30,8 @@ public class Bumper : MonoBehaviour
             bolaRig.velocity *= multiplier;
 
             animator.SetTrigger("Hit");
+            audioManager.PlaysfxAudioSource(collision.transform.position);
+            VFXManager.PlayvfxBumperSource(collision.transform.position);
         }
     }
 }

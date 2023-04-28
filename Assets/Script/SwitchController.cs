@@ -14,6 +14,8 @@ public class SwitchController : MonoBehaviour
     public Collider Bola;
     public Material offMaterial;
     public Material onMaterial;
+    public AudioManager audioManager;
+    public VFXManager VFXManager;
 
     private Renderer renderer;
     private SwitchState state;
@@ -35,6 +37,13 @@ public class SwitchController : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider == Bola)
+        {
+            Toggle();
+        }
+    }
     private void Set(bool active)
     {
         if (active == true)
@@ -42,12 +51,14 @@ public class SwitchController : MonoBehaviour
             state = SwitchState.On;
             renderer.material = onMaterial;
             StopAllCoroutines();
+            audioManager.PlaysfxAudioSource2(Bola.transform.position);
         }
         else
         {
             state = SwitchState.Off;
             renderer.material = offMaterial;
             StartCoroutine(BlinkTimerStart(5));
+            audioManager.PlaysfxAudioSource3(Bola.transform.position);
         }
 
     }
@@ -57,10 +68,13 @@ public class SwitchController : MonoBehaviour
         if (state == SwitchState.On)
         {
             Set(false);
+            VFXManager.PlayvfxSwitchSource(Bola.transform.position);
+
         }
         else
         {
             Set(true);
+            VFXManager.PlayvfxSwitchSource(Bola.transform.position);
         }
     }
 
@@ -72,7 +86,6 @@ public class SwitchController : MonoBehaviour
         {
             renderer.material = onMaterial;
             yield return new WaitForSeconds(0.5f);
-            Debug.Log("Blinking");
             renderer.material = offMaterial;
             yield return new WaitForSeconds(0.5f);
 
@@ -87,11 +100,5 @@ public class SwitchController : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         StartCoroutine(Blink(2));
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
