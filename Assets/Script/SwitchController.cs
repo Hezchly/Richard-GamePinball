@@ -14,8 +14,11 @@ public class SwitchController : MonoBehaviour
     public Collider Bola;
     public Material offMaterial;
     public Material onMaterial;
+    public float score;
+
     public AudioManager audioManager;
     public VFXManager VFXManager;
+    public ScoreManager scoreManager;
 
     private Renderer renderer;
     private SwitchState state;
@@ -65,6 +68,8 @@ public class SwitchController : MonoBehaviour
 
     private void Toggle()
     {
+        scoreManager.AddScore(score);
+
         if (state == SwitchState.On)
         {
             Set(false);
